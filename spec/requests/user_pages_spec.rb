@@ -19,4 +19,34 @@ describe "User pages" do
   	it { should have_selector("title", text: user.name) }
   end
 
+  describe "signup" do
+
+    before { visit signup_path }
+
+    describe "with invalid information" do
+      it "should not create a user" do
+        old_count = User.count
+        click_button "Create my account"
+        new_count = User.count
+        new_count.should == old_count
+         end 
+      end
+  
+
+    describe "with valid information" do
+      it "should create a user" do
+        old_count = User.count
+        fill_in "Name",          with: "Example User"
+        fill_in "Email",         with: "user@example.com"
+        fill_in "Password",      with: "foobar"
+        fill_in "Confirmation",  with: "foobar"
+        click_button "Create my account"
+        new_count = User.count
+        new_count.should == old_count + 1
+      end
+    end
+
+  end
+
+
 end
