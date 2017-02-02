@@ -7,16 +7,20 @@ describe "User pages" do
   	describe "signup page" do
   		before { visit signup_path }
 
-  		it { should have_selector("h1", text: "Sign up")}
-  		it { should have_selector("title", text: full_title("Sign up"))}
+  		# it { should have_selector("h1", text: "Sign up")}
+      it { should have_correct_heading('Sign up') }  #refactor above
+  		# it { should have_selector("title", text: full_title("Sign up"))}
+      it { should have_correct_title(full_title("Sign up")) } #refactor above
   end
 
   describe "profile page" do
   	let(:user) { FactoryGirl.create(:user) }
   	before { visit user_path(user) }
 
-  	it { should have_selector("h1", text: user.name) }
-  	it { should have_selector("title", text: user.name) }
+  	# it { should have_selector("h1", text: user.name) }
+    it { should have_correct_heading(user.name) }  #refactor above
+  	# it { should have_selector("title", text: user.name) }
+    it { should have_correct_title(full_title(user.name)) } #refactor above
   end
 
   describe "signup" do
@@ -33,7 +37,8 @@ describe "User pages" do
       describe "after submission" do
         before { click_button submit }
 
-        it { should have_selector('title', text: 'Sign up') }
+        # it { should have_selector('title', text: 'Sign up') }
+        it { should have_correct_title("Sign up") } #refactor above
         it { should have_content('error') }
         it { should_not have_content('Password digest') }
       end
@@ -59,9 +64,12 @@ describe "User pages" do
    
         let(:user) { User.find_by_email("user@example.com") }
 
-        it { should have_selector('title', text: user.name) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-        it { should have_link('Sign out') }
+        # it { should have_selector('title', text: user.name) }
+        it { should have_correct_title(user.name) } #refactor above
+        # it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_alert_message('Welcome') } #refactor above
+        # it { should have_link('Sign out') }
+        it { should have_signout_link(signout_path) } #refactor of above
       end
     end
   end
