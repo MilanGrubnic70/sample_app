@@ -44,11 +44,12 @@ describe "AuthenticationPages" do
 
 				# it { should have_selector('title', 		text: user.name) }
 				it { should have_correct_title(user.name) } #refactor of above
-				# it { should have_link('Profile', 		href: user_path(user)) }
+				# it { should have_link('Profile', 			href: user_path(user)) }
 				it {should have_profile_link(user_path(user)) } #refactor of above
 				# it { should have_link('Sign out', 		href: signout_path) }
 				it { should have_signout_link(signout_path) } #refactor of above
-				# it { should_not have_link('Sign in', 	href: signin_path) }
+				it { should have_link('Settings', 			href: edit_user_path(user) )}
+				# it { should_not have_link('Sign in', 		href: signin_path) }
 				it { should_not have_signin_link(signin_path) } #refactor of above
 
 				describe "followed by signout" do
