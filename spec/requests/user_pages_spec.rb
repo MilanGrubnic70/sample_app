@@ -101,7 +101,11 @@ describe "User pages" do
         click_button "Save changes"
       end # before do
 
-      it {should have_selector('title', text: new_name) }
+      it { should have_selector('title', text: new_name) }
+      it { should have_link('Sign out', href: signout_path) }
+      it { should have_selector('div.alert-success') }
+      specify { user.reload.name.should  == new_name }
+      specify { user.reload.email.should == new_email }
     end # with vaid info do
 
   end # edit do
