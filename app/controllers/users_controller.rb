@@ -41,7 +41,10 @@ class UsersController < ApplicationController
     def signed_in_user
       # flash[:notice] = "Please sign in."
       # raise signed_in?.inspect  ### debugging tool
-      redirect_to signin_path, notice: "Please sign in." unless signed_in?
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end 
     end
 
     def correct_user
