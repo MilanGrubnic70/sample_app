@@ -8,6 +8,7 @@ gem 'rb-readline'
 gem 'rake', '< 11.0'
 gem 'bcrypt-ruby', '3.0.1' 
 gem 'table_print'
+gem 'faker', '1.0.1'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.5'
