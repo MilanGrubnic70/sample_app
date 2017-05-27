@@ -8,9 +8,11 @@ describe Micropost do
   	# This code is wrong! 
   # before do
   # 	 @micropost = Micropost.new(content: "Lorem ipsum", user_id: user.id)
+  		# @micropost.user_id = user.id
   # end
 
   before { @micropost = user.microposts.build(content: "Lorem ipsum") }
+
 
   subject { @micropost }
 
@@ -18,6 +20,7 @@ describe Micropost do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   its(:user) { should == user }
+  
   it { should be_valid }
 
   describe "accessible attributes" do
